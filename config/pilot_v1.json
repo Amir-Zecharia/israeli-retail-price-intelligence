@@ -1,0 +1,137 @@
+{
+  "name": "irpi_pilot",
+  "version": 1,
+  "selection_method": "Fixed convenience pilot: two verified source partitions, eleven manually reviewed exact GTIN packaged products; not representative of chains or Israeli market; unknown branch city/address.",
+  "stores": [
+    {
+      "chain": "shufersal",
+      "chain_id": "7290027600007",
+      "chain_name": "שופרסל",
+      "store_id": "034",
+      "filename_store_id": "034",
+      "store_name": "שופרסל — מזהה מקור 034",
+      "listing_url": "https://prices.shufersal.co.il/FileObject/UpdateCategory?catID=2&storeId=0&page=1"
+    },
+    {
+      "chain": "carrefour",
+      "chain_id": "7290055700007",
+      "chain_name": "קרפור",
+      "store_id": "134",
+      "filename_store_id": "416",
+      "store_name": "קרפור — מזהה מקור 134",
+      "listing_url": "https://prices.carrefour.co.il/"
+    }
+  ],
+  "products": [
+    {
+      "gtin": "00000040084107",
+      "product_name": "ביצת קינדר הפתעה 20 גרם",
+      "manufacturer": "פררו אס.פי.אי",
+      "quantity": "20.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000054051157",
+      "product_name": "מעדן סויה שוקו 4יח אלפרו",
+      "manufacturer": "אלפרו C.V.A",
+      "quantity": "500.00",
+      "unit": "גרם",
+      "category": "חלב ותחליפים",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000072917329",
+      "product_name": "חטיף שוקולד אגוזי 45 גרם",
+      "manufacturer": "שטראוס גרופ בע\"מ",
+      "quantity": "45.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000072917367",
+      "product_name": "חטיף טעמי 40ג עלית",
+      "manufacturer": "שטראוס גרופ בע\"מ",
+      "quantity": "40.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000072940754",
+      "product_name": "מילקי בטעם וניל 170 מ\"ל",
+      "manufacturer": "שטראוס גרופ בע\"מ",
+      "quantity": "170.00",
+      "unit": "מיליליטר",
+      "category": "חלב ותחליפים",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000080042563",
+      "product_name": "מחית עגבניות קלה700 מוטי",
+      "manufacturer": "",
+      "quantity": "700.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000080052760",
+      "product_name": "קינדר בואנו 2 * 21.5 גרם",
+      "manufacturer": "פררו אס.פי.אי",
+      "quantity": "43.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000080176800",
+      "product_name": "נוטלה ממרח שוקולד 750 גר",
+      "manufacturer": "פררו תעשיות איטליה ס.ר.ל",
+      "quantity": "750.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000080177609",
+      "product_name": "אצבעות שוקולד קינדר50גרם",
+      "manufacturer": "פררו אס.פי.אי",
+      "quantity": "50.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000080177616",
+      "product_name": "אצבעות שוקולד קינדר100גר",
+      "manufacturer": "פררו אס.פי.אי",
+      "quantity": "100.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    },
+    {
+      "gtin": "00000080310891",
+      "product_name": "ביצת הפתעה קינדר גוי20ג",
+      "manufacturer": "פררו אס.פי.אי",
+      "quantity": "20.00",
+      "unit": "גרם",
+      "category": "מזון ארוז",
+      "basket_quantity": "1",
+      "review": "assistant reviewed original paired names, GTIN, package fields; no unresolved package contradiction"
+    }
+  ]
+}

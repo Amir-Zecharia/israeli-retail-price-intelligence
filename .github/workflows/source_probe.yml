@@ -1,0 +1,31 @@
+name: Official source feasibility probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: source-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-probe.txt
+      - run: python -m pip install -r requirements-probe.txt
+      - name: Synthetic parser and identity tests
+        run: PYTHONPATH=tests python -m unittest test_source_probe test_listing_regression test_probe_failures -v
+      - name: Two chains, one bounded full file each
+        run: python -m pipeline.extract.probe --output artifacts/source_probe.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-probe-evidence
+          path: artifacts/source_probe.json
+          retention-days: 7
+          if-no-files-found: error

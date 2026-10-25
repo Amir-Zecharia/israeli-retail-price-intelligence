@@ -1,0 +1,18 @@
+# English analytical dashboard
+
+Run `.venv/bin/python scripts/local.py start` from the project root after following the README setup steps. The helper configures the project's dedicated read-only database connection. For an external PostgreSQL database, configure `READ_DATABASE_URL` in the environment or Streamlit secrets and run `.venv/bin/python -m streamlit run app/main.py`. The ingestion `DATABASE_URL` is not an implicit fallback.
+
+Six routes are available through the English sidebar: overview, retailer comparison, product history, baskets, behavior, and quality/methodology. Dates are inclusive. Latest prices searches all published history through the end date and exposes age relative to that cutoff. All other price analyses use observations inside the selected period. Metrics and plots consume parameterized PostgreSQL analyses; Pandas only renders results. No dashboard request fetches provider data.
+
+Sample, chain, branch, category and exact-product filters are passed to SQL. Search locates names or barcodes; selecting the found product applies its identity. Empty branch/chain selection means zero rows. Basket items remain immutable, so a product/category restriction can make the basket incomplete. The complete-panel checkbox filters SQL's declared eligibility, without recalculating eligibility in Python. Quality tables apply the period/sample but remain run-level, not product/branch-level. Last success and latest attempt describe the whole sample.
+
+Exports have a UTF-8 BOM and neutralize spreadsheet formula prefixes in text. Values remain observations, not guaranteed shelf prices now. All times displayed are converted to Asia/Jerusalem. One-day history shows an insufficiency notice instead of a temporal chart. Dated comparison bars show the latest observed day explicitly; tables and CSV retain the full selected period. Missing branch-spread values are never replaced with zero. Tables are bounded to 1,000 rows; narrow filters when the limit is reached.
+
+The pilot contains 22 published observations, 11 exact products, two chains and one store per chain on 2026-10-24. History and within-chain branch conclusions remain unavailable until genuine coverage accrues. See source feasibility and methodology documents for selection, provenance and source limitations. Public deployment and cloud collection remain pending local user review.
+
+A 60-second cache keys each result by its full connection and every SQL argument. The sidebar refresh button clears both option and analytical caches. The SQL collection timestamps remain visible independently of cache age.
+
+Verification: `python -m pytest -q tests/dashboard` exercises empty, populated, one-day insufficient-history, filters/search/date validation, sanitized errors, formula-safe export and missing configuration. Set `DASHBOARD_TEST_DATABASE_URL` to a disposable or genuine read-only database to additionally render all six routes with real PostgreSQL results. This optional smoke test performs SELECT only; test fixtures never write to the genuine pilot.
+
+
+The application is English only and uses left-to-right layout. Eleven pilot product labels were reviewed against their GTIN and package descriptions. Chain, source-store and category display labels are mapped in `app/ui.py`; unsupported source names use neutral identifiers rather than guessed translations. English names and GTINs are searchable. Tables, chart text, filter options and CSV labels use English presentation values. Original source text and provenance remain unchanged in PostgreSQL; category filters continue to send the original exact category to SQL.
