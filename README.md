@@ -1,12 +1,15 @@
 # Israeli Retail Price Intelligence
 
-IRPI is a English retail pricing analytics application built with Python, PostgreSQL,
+IRPI is an English retail pricing analytics application built with Python, PostgreSQL,
 Streamlit and Plotly. It collects official Israeli supermarket publications,
 preserves genuine observations and answers reproducible questions about matched
 products, fixed baskets, category gaps and observed price changes.
 
-**Status: working local pilot; public hosting and cloud collection pending user
-review.** There is currently no verified public demo URL. The initial genuine
+**Status: published source, working local pilot; public hosting remains pending.**
+
+[GitHub repository](https://github.com/Amir-Zecharia/israeli-retail-price-intelligence) · [Verified CI run](https://github.com/Amir-Zecharia/israeli-retail-price-intelligence/actions/runs/40177066835)
+
+There is currently no verified public demo URL. The initial genuine
 snapshot covers 24 October 2026: two chains, one source branch per chain, eleven
 products and 22 published prices. A same-day revision preserves provenance without
 creating an extra day of history. This convenience sample does not represent the
@@ -140,16 +143,14 @@ for recorded test counts.
 
 `.github/workflows/ci.yml` prepares push/PR CI with PostgreSQL 17.
 `daily_ingestion.yml` prepares daily ingestion and manual recovery;
-`source_probe.yml` prepares hosted source diagnostics. Workflow files alone do not
-prove a hosted or scheduled execution. [Deployment instructions](docs/deployment.md)
+`source_probe.yml` prepares hosted source diagnostics. The first hosted CI run passed with 52 tests and one optional local-data check skipped; all 53 tests passed locally. The daily schedule has not yet been verified. [Deployment instructions](docs/deployment.md)
 cover the remaining Supabase, GitHub Actions and Streamlit setup and verification.
-Publication waits for the user's local review and authorization.
+The English source has been published after local review and explicit authorization. Hosted database and dashboard deployment remain separate steps.
 
 ## Limitations and next steps
 
 The current panel is small, dominated by confectionery, and has unverified
-geographic branch metadata. Official source accessibility from cloud runners,
-public deployment, current service quotas and scheduled execution remain pending.
+geographic branch metadata. The hosted source probe parsed 5,974 Shufersal records, but Carrefour timed out; the two-source cloud gate remains unmet. Public deployment, current service quotas and scheduled execution remain pending.
 See [limitations](docs/limitations.md). Next: review the local app, verify hosted
 access and deployment when authorized, then expand fixed sample versions and accrue
 genuine history. Optional weekly reports and composite scores remain deferred.

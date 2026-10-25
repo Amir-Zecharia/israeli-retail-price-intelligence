@@ -92,3 +92,21 @@
 - Preserved measurement units in English exports and verified GTINs, quantities and prices remain unchanged.
 - Full local verification: **53 passed in 3.22s**, including English-only rendered output across all six routes using the genuine read-only PostgreSQL connection.
 - Public hosting, independent cloud collection and scheduled ingestion still require separate verification.
+
+
+## 2026-10-25 — GitHub publication
+
+- Published the reviewed English version to https://github.com/Amir-Zecharia/israeli-retail-price-intelligence using existing SSH credentials.
+- Hosted CI run 40177066835 succeeded: **52 passed, 1 skipped in 6.53s**. The optional genuine local-data rendering check was skipped on the hosted fixture database; all 53 checks passed locally.
+- Hosted source probe 40177107830 was dispatched separately; its source evidence does not establish cloud database ingestion or public application deployment.
+
+
+## 2026-10-25 — Repository error audit
+
+- Reproduced the public fresh-checkout test failure: the read-only smoke test assumed a populated retail snapshot, which is intentionally excluded from Git. Corrected it to verify explicit empty-publication guidance and retain all populated-route assertions; added a dedicated empty-database regression.
+- Verified both setups: **54 passed in 2.83s** for a clean source export with its own empty database; **54 passed in 3.01s** for the saved populated pilot.
+- Hosted source probe 40177107830 failed truthfully: Shufersal parsed5,974records with0rejections; CarrefourConnectTimeout;4requests total. This is an unresolved external connectivity dependency, not proof of a parser failure or completed cloud source gate.
+- Corrected stale publication/CI status text and English article grammar in the documentation.
+
+- Independent review found multi-branch manifests keyed stores only by chain, overwriting branch identity. Reproduced a PostgreSQL UniqueViolation with two branches in one chain, then keyed stores consistently by chain identifier and source-store identifier. The three-store regression verifies33published observations and3expected/fetched partitions.
+- Final verification after both fixes: **55 passed in 3.18s** in the populated local setup and **55 passed in 2.85s** in the clean empty-data setup.

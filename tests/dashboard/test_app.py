@@ -66,6 +66,11 @@ def test_live_readonly_pages(monkeypatch):
     if not dsn: pytest.skip('Optional genuine local read-only database smoke test')
     monkeypatch.setenv('READ_DATABASE_URL',dsn)
     at=AppTest.from_file(Path(__file__).resolve().parents[2]/'app/main.py',default_timeout=20).run()
+    assert not at.exception and not at.error
+    if any(message.value=='No sample has been published yet. Data appears after successful collection and publication.' for message in at.info):
+        # A public source checkout intentionally has no bundled retail snapshot.
+        assert_english_render(at)
+        return
     for page in PAGES:
         at.sidebar.radio[0].set_value(page).run()
         if page==PAGES[2]: at.sidebar.selectbox[2].select_index(1).run()
@@ -190,3 +195,13 @@ def test_english_export_preserves_measurement_identity_and_values():
     assert Decimal(exported['quantity_snapshot'])==Decimal('20.00')
     assert Decimal(exported['Price (ILS)'])==Decimal('8.50')
     assert raw['unit_snapshot']=='גרם'
+
+
+def test_empty_database_shows_publication_guidance(monkeypatch):
+    monkeypatch.setenv('READ_DATABASE_URL','test')
+    empty_options=dict(OPTIONS,samples=[],products=[],stores=[],chains=[],baskets=[])
+    with patch('database.analytics.options',return_value=empty_options):
+        at=AppTest.from_file(Path(__file__).resolve().parents[2]/'app/main.py').run()
+        assert not at.exception and not at.error
+        assert any('No sample has been published yet.' in message.value for message in at.info)
+        assert_english_render(at)

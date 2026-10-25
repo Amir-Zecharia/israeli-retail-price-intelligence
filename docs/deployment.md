@@ -9,9 +9,7 @@ not automatically load `.env`. A missing read-only configuration produces a safe
 configuration state rather than using an administrator connection.
 
 The user's direction is to review a working local application **before publication**.
-There is no verified public repository, Supabase deployment, Streamlit public URL,
-cloud ingestion result or scheduled execution. The prepared workflows are source
-files, not operational evidence.
+The [public source repository](https://github.com/Amir-Zecharia/israeli-retail-price-intelligence) is published and the first hosted CI run passed (52 passed, one optional local-data smoke test skipped). Supabase deployment, a public Streamlit URL, cloud database ingestion and scheduled execution remain unverified. The source-probe outcome is recorded separately; source access alone does not prove ingestion or public hosting.
 
 ## Hosted release checklist — pending authorization and execution
 

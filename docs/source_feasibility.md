@@ -1,6 +1,6 @@
 # Source feasibility — 2026-10-24
 
-Status update (2026-10-25): **local official-feed pilot, PostgreSQL ingestion, SQL analytics and English dashboard implemented; cloud feasibility and public deployment pending**. The original investigation below remains dated2026-10-24. The controlled local source selection and branch mapping are documented in methodology; local evidence does not establish hosted accessibility.
+Status update (2026-10-25): **local official-feed pilot, PostgreSQL ingestion, SQL analytics and English dashboard implemented; GitHub source and CI published; two-source cloud gate and public app deployment pending**. The original investigation below remains dated2026-10-24. The controlled local source selection and branch mapping are documented in methodology; local evidence does not establish hosted accessibility.
 
 ## Observed proof
 
@@ -59,6 +59,6 @@ The implementation keeps only a small evidence excerpt and hashes, not a fabrica
 
 - 16 tests pass, covering filename variants, source fields, decimal prices, identity checks, timezone conversion, missing IDs, access denials, bounded retries, byte limits, gzip expansion and explicit failure diagnostics.
 - Real local extraction passed for two chains; selected cross-chain identities reviewed above.
-- `.github/workflows/source_probe.yml` is prepared but not executed. GitHub publication was previously declined. The current user direction requires a working local review before publication; hosted execution remains pending that review and authorization.
+- Hosted [source probe run 40177107830](https://github.com/Amir-Zecharia/israeli-retail-price-intelligence/actions/runs/40177107830) executed on 2026-10-25. Shufersal parsed 5,974 records with zero parse rejections; Carrefour failed with ConnectTimeout after bounded attempts. Four total requests were made. No cross-chain matches were available, so the technical gate failed. The diagnostic artifact records the partial result; no access restriction was bypassed.
 - Cloud success must be evidenced by an actual run URL and artifact. Local success cannot satisfy this check.
 - Local pilot continuation completed after the user-directed gate change: methodology records the fixed source/XML branch mapping, eleven-product panel and source-use limitations; schema, ingestion, SQL and local dashboard now exist. Cloud source verification remains an open release gate under the original Babysitter run.

@@ -2,12 +2,11 @@
 
 This maps the original brief to implemented paths and actual evidence. **Local**
 means verified in the local environment, not cloud deployment. Overall public-product
-acceptance remains pending. User direction explicitly defers publication until local
-review; the original run and unfulfilled hosted gates remain intact.
+acceptance remains pending. The English source was published after explicit authorization and local review; the original run and unfulfilled hosted deployment gates remain intact.
 
 | Requirement / brief section | Implementation and documentation | Evidence / state |
 |---|---|---|
-| Genuine source feasibility (3, Phase0) | `pipeline/extract`, `docs/source_feasibility.md` | Local real official records from two chains; source proof16tests; hosted access pending |
+| Genuine source feasibility (3, Phase0) | `pipeline/extract`, `docs/source_feasibility.md` | Local real official records from two chains; source proof16tests; hosted probe: Shufersal passed, Carrefour ConnectTimeout; two-source gate unmet |
 | Reproducible controlled pilot (4) | `config/pilot_v1.json`, `docs/methodology.md` | Eleven reviewed products, two chains/two source branches; larger target pending |
 | Relational schema, constraints, UTC/NUMERIC (5) | `database/migrations/001_foundation.sql`, `002_immutable_identity.sql`, `database/connection.py`, data dictionary | Actual PostgreSQL17 integrity/permission tests; checked additive migrations |
 | Transactions, identity, retry/failure/concurrency (6) | `pipeline/ingest.py`, extraction adapter, pipeline tests | Two genuine complete same-day revisions;22published rows; failure/partial/concurrency fixtures in irpi_test |
@@ -17,10 +16,10 @@ review; the original run and unfulfilled hosted gates remain intact.
 | Six pages (English per latest user direction) (8) | `app/main.py`, `app/data.py`, `app/ui.py`, dashboard documentation | Streamlit smoke tests cover six populated routes, empty/one-day/error/filter states; browser visual evidence recorded separately |
 | Search/filters/charts/CSV/cache/freshness (8) | app UI + parameterized SQL | Smoke tests, formula-safe export tests;60-second cache; bounded output |
 | Read-only dashboard/security (12) | dedicated `READ_DATABASE_URL`, irpi_reader grants, `.env.example` | Actual irpi_dashboard LOGIN query/options and read-only six-page smoke checks; hosted secrets pending |
-| Automated tests (10) | `tests`, `.github/workflows/ci.yml` |53 tests passed in 3.22s after English conversion, including real read-only rendering; hosted CI pending |
+| Automated tests (10) | `tests`, `.github/workflows/ci.yml` |55 tests passed in both clean empty and populated setups, including real read-only rendering; hosted CI passed: 52 passed, 1 optional local-data check skipped |
 | Reproducible local setup/backup (11,12) | `scripts/local.py`, README, deployment runbook | Canonical project restored into its own cluster;51tests passed;22published observations and one date;app running locally |
-| Daily/manual scheduler (6,12) | `.github/workflows/daily_ingestion.yml`, `source_probe.yml` | Files prepared; no hosted dispatch or actual schedule observed |
-| Supabase and public Streamlit URL (12, Phase5) | `docs/deployment.md` | **Pending user local review and publication authorization, then account setup and actual verification** |
+| Daily/manual scheduler (6,12) | `.github/workflows/daily_ingestion.yml`, `source_probe.yml` | Source probe dispatched: Shufersal parsed, Carrefour timed out; daily database ingestion and actual schedule remain unverified |
+| Supabase and public Streamlit URL (12, Phase5) | `docs/deployment.md` | **Pending account setup and actual hosted application verification** |
 | Independent cloud ingestion/browser access (12,16) | release checklist | **Pending; local collection does not satisfy this gate** |
 | Current free-tier quotas/capacity/recovery (12) | deployment runbook | Verification procedure documented; current account limits, monitoring and hosted restore drill pending |
 | English README/diagram/3real findings (15, Phase6) | README, architecture, SQL analysis, limitations | Genuine basket/category/largest-product findings documented; no fabricated public URL or screenshots |

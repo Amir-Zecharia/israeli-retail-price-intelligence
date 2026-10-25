@@ -32,10 +32,7 @@
   control. Dates and selected panel affect all analytical interpretations. Category
   membership uses historical labels where known, with a documented reference fallback
   for manifest products never observed. No arbitrary composite behavior score exists.
-- **Hosting:** GitHub publication, hosted CI/source probe, Supabase, Streamlit public
-  URL, real hosted ingestion, current service quotas, independent browser verification,
-  scheduled invocation and hosted recovery remain pending. Prepared workflow files
-  do not prove execution. Free services cannot be assumed to guarantee 24/7 uptime.
+- **Hosting:** GitHub source publication and CI are verified. The hosted source probe parsed Shufersal but Carrefour timed out, so the two-source cloud gate remains unmet. Supabase, a public Streamlit URL, real hosted database ingestion, current service quotas, independent browser verification, scheduled invocation and hosted recovery remain pending. Free services cannot be assumed to guarantee 24/7 uptime.
 - **Operations:** the local helper uses a private Unix socket and local trust under
   restricted directories; it is not a cloud authentication configuration. Snapshots
   and local state are intentionally excluded from Git. Backups must be retained

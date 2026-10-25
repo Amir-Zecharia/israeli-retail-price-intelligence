@@ -76,7 +76,7 @@ def seed(conn,manifest):
     stores={}; products={}
     for s in manifest['stores']:
         cid=conn.execute('INSERT INTO retail_chains(source_id,source_chain_identifier,chain_name) VALUES (%s,%s,%s) ON CONFLICT(source_id,source_chain_identifier) DO UPDATE SET chain_name=excluded.chain_name RETURNING chain_id',(sid,s['chain_id'],s['chain_name'])).fetchone()[0]
-        stores[s['chain']]=conn.execute('INSERT INTO stores(chain_id,source_store_identifier,store_name) VALUES (%s,%s,%s) ON CONFLICT(chain_id,source_store_identifier) DO UPDATE SET store_name=excluded.store_name RETURNING store_id',(cid,s['store_id'],s['store_name'])).fetchone()[0]
+        stores[(s['chain_id'],s['store_id'])]=conn.execute('INSERT INTO stores(chain_id,source_store_identifier,store_name) VALUES (%s,%s,%s) ON CONFLICT(chain_id,source_store_identifier) DO UPDATE SET store_name=excluded.store_name RETURNING store_id',(cid,s['store_id'],s['store_name'])).fetchone()[0]
     for p in manifest['products']:
         cat=conn.execute('INSERT INTO categories(category_name) VALUES (%s) ON CONFLICT(category_name) DO UPDATE SET category_name=excluded.category_name RETURNING category_id',(p['category'],)).fetchone()[0]
         products[p['gtin']]=conn.execute('INSERT INTO products(gtin,product_name,manufacturer,category_id,quantity,unit) VALUES (%s,%s,%s,%s,%s,%s) ON CONFLICT(gtin) DO UPDATE SET product_name=excluded.product_name RETURNING product_id',(p['gtin'],p['product_name'],p.get('manufacturer'),cat,p['quantity'],p['unit'])).fetchone()[0]
@@ -125,7 +125,7 @@ def ingest(manifest,dsn=None,extractor=extract_partition,now=None):
             try:
                 with conn.transaction():
                     for part in partitions:
-                        store=part['store']; store_id=stores[store['chain']]
+                        store=part['store']; store_id=stores[(store['chain_id'],store['store_id'])]
                         fileid=conn.execute('INSERT INTO source_files(ingestion_run_id,store_id,source_url,sha256,collected_at) VALUES (%s,%s,%s,%s,%s) RETURNING source_file_id',(rid,store_id,store['listing_url'],part['sha256'],part['collected_at'])).fetchone()[0]
                         for row in part['rows']:
                             p=next(p for p in manifest['products'] if p['gtin']==row['gtin'])

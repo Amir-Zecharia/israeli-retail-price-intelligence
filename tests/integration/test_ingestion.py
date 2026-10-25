@@ -71,3 +71,15 @@ def test_concurrent_attempts_serialize_daily_publication(setup):
     assert sorted(r['revision'] for r in attempts)==[1,2]
     with connect(dsn) as conn:
         assert conn.execute('SELECT count(*) FROM published_prices p JOIN samples s USING(sample_id) WHERE s.name=%s',(m['name'],)).fetchone()[0]==22
+
+
+def test_multiple_stores_in_one_chain_keep_distinct_partitions(setup):
+    dsn,m=setup
+    second_store=dict(m['stores'][0],store_id='035',filename_store_id='035',store_name='Second Shufersal test store')
+    m['stores'].append(second_store)
+    result=ingest(m,dsn,fake)
+    assert result['status']=='complete' and result['partitions']==3 and result['accepted']==33
+    with connect(dsn) as conn:
+        assert conn.execute('SELECT expected_partitions,fetched_partitions FROM ingestion_runs WHERE ingestion_run_id=%s',(result['ingestion_run_id'],)).fetchone()==(3,3)
+        rows=conn.execute('SELECT source_store_identifier,count(*) FROM published_prices p JOIN stores s USING(store_id) WHERE ingestion_run_id=%s GROUP BY source_store_identifier ORDER BY source_store_identifier',(result['ingestion_run_id'],)).fetchall()
+        assert rows==[('034',11),('035',11),('134',11)]
